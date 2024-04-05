@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+npm-debug.log
+
+# Environment variables
+.env
+
+# Built output
+dist/
+build/
+out/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.log
+
+# Mac OS
+.DS_Store
+
+# Webpack
+webpack-debug.log
