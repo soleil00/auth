@@ -1,7 +1,5 @@
 # Project Refresher
 
-This repository represents a team project refresher where we will implement the following features:
-
 ## Overview
 
 The purpose of this project is to refresh our team's skills and knowledge in building a Node.js application with Express and TypeScript, integrating with a PostgreSQL database using Sequelize ORM. Additionally, we will implement authentication with Google OAuth, profile settings functionality, and email notifications to enhance the user experience.
@@ -15,7 +13,7 @@ The purpose of this project is to refresh our team's skills and knowledge in bui
 
 ## Tasks Allocation
 
-1. **Set up Node Express Application with Sequelize and PostgreSQL**
+1. **Set up Node Express Application with Sequelize and PostgreSQL and Typescript**
 
    - **Assigned to:**
      - Mugemane Bertin (Lead)
