@@ -1,21 +1,9 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv'; 
-import { Sequelize } from 'sequelize';
+import sequelizeInstance from './config/dbConnection';
 
-dotenv.config();  
 
 const app: Express = express();
-
-const loadConnection = (): string => {
-    const dbConnection = process.env.DbConnection;
-    if (!dbConnection) {
-        throw new Error('Database connection string is not provided in the environment variables.');
-    }
-    return dbConnection;
-}
-
-const sequelizeInstance = new Sequelize(loadConnection());
 
 async function configureApp(): Promise<void> {
     try {
@@ -25,7 +13,6 @@ async function configureApp(): Promise<void> {
         console.error('Unable to connect to the database:', error);
     }
 
-    // Middleware setup
     app.use(cors());
     app.use(express.json());
 }
