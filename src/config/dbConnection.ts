@@ -1,16 +1,18 @@
-import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
+import { Sequelize } from "sequelize";
+import env from "../environment/env";
+import logger from "../utilis/logger";
 
-dotenv.config();
+const sequelizeInstance = new Sequelize(env.dbConnection);
 
-const loadConnection = (): string => {
-    const dbConnection = process.env.DbConnection;
-    if (!dbConnection) {
-        throw new Error('Database connection string is not provided in the environment variables.');
-    }
-    return dbConnection;
-}
+const loadConnection = async () => {
+  try {
+    await sequelizeInstance.authenticate();
+    logger.info("Connected to DB");
+  } catch (error: any) {
+    logger.error("failed to connect to database : " + error.message);
+  }
+};
 
-const sequelizeInstance = new Sequelize(loadConnection());
+loadConnection();
 
 export default sequelizeInstance;
