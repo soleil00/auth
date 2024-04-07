@@ -1,18 +1,35 @@
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 
-console.log("dburl", process.env.DbConnection);
 module.exports = {
   development: {
-    url: process.env.DbConnection,
+    url: process.env.DB_CONNECTION,
     dialect: "postgres",
-    
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, // Depending on your database setup, you might need this option
+      },
+    },
   },
   test: {
-    url: process.env.DbConnection,
+    url: process.env.DB_CONNECTION,
     dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, // Depending on your database setup, you might need this option
+      },
+    },
   },
   production: {
-    url: process.env.DbConnection,
+    url: process.env.DB_CONNECTION,
     dialect: "postgres",
-  },
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, // Depending on your database setup, you might need this option
+      },
+    },
+  },
 };
