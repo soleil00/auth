@@ -31,4 +31,4 @@ The purpose of this project is to refresh our team's skills and knowledge in bui
 
 4. **Email Notification on Profile Update**
    - **Assigned to:**
-     - Emmanuel Irumv
+     - Emmanuel Irumva
