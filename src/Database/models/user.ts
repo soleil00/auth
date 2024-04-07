@@ -2,15 +2,15 @@ import { DataTypes } from "sequelize";
 import sequelizeInstance from "../../config/dbConnection";
 
 const User = sequelizeInstance.define("user", {
-  firstName: {
+  first_name: {
     type: DataTypes.STRING,
-    field: "first_name",
     allowNull: false,
+    field: "first_name",
     validate: {
       notEmpty: true,
     },
   },
-  lastName: {
+  last_name: {
     type: DataTypes.STRING,
     allowNull: false,
     field: "last_name",
@@ -18,27 +18,29 @@ const User = sequelizeInstance.define("user", {
       notEmpty: true,
     },
   },
-  fullName: {
+  full_name: {
     type: DataTypes.STRING,
-    field: "full_name",
     allowNull: false,
+    field: "full_name",
     validate: {
       notEmpty: true,
     },
   },
   email: {
     type: DataTypes.STRING,
-    field: "email",
     allowNull: false,
+  },
+  profile: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  google_id: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: "google_id",
   },
   password: {
     type: DataTypes.STRING,
-    field: "password",
-    allowNull: true,
-  },
-  googleId: {
-    type: DataTypes.STRING,
-    field: "google_id",
     allowNull: false,
   },
 });
