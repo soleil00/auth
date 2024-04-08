@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import User from "../Database/models/user";
 export const generateUserToken = async (user: any) => {
   try {
-    const token = jwt.sign({ userId: user.id }, "soleil", {
+    const token = jwt.sign({ userId: user.google_id }, "team1", {
       expiresIn: "30d",
     });
     return token;
@@ -12,7 +12,7 @@ export const generateUserToken = async (user: any) => {
 };
 export const decodeUserToken = async (token: string) => {
   try {
-    const decoded = jwt.verify(token, "soleil");
+    const decoded = jwt.verify(token, "team1");
     //@ts-ignore
     const user = await User.findOne({ where: { google_id: decoded.userId } });
     if (!user) {
