@@ -7,6 +7,9 @@ const env = {
   callbackURL: process.env.GOOGLE_CALLBACK_URL as string,
   dbConnection: process.env.DB_CONNECTION as string,
   port: process.env.PORT,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 };
 
 export default env;
