@@ -31,7 +31,7 @@ export const handleSuccess = async (req: Request, res: Response) => {
         email: user.emails[0].value,
         google_id: user.id,
         profile: user.photos[0].value,
-        password: "soleil-did",
+        password: user.emails[0].value,
       });
      const token = jwtService.generateUserToken(newUser)
      return  res.status(201).json({
