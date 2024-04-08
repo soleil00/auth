@@ -1,31 +1,40 @@
-import express, { Express, Request, Response } from 'express';
-import cors from 'cors';
-import sequelizeInstance from './config/dbConnection';
-
+import express, { Express } from "express";
+import cors from "cors";
+import sequelize from "./config/dbConnection";
+import session from "express-session";
+import passport from "passport";
+import userRoutes from "./routes/userRoutes";
+import logger from "./utilis/logger";
+import appRoutes from "./routes";
 
 const app: Express = express();
 
-async function configureApp(): Promise<void> {
-    try {
-        await sequelizeInstance.authenticate();
-        console.log('Database connected successfully but it is 🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
+app.use(cors());
+app.use(express.json());
 
-    app.use(cors());
-    app.use(express.json());
-}
+app.use(
+  session({
+    secret: "eagles.team1",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+    },
+  })
+);
 
-function setupRoutes(): void {
-    app.get('/api/v1', (_req: Request, res: Response) => {
-        res.send('Auth API version 1').status(200);
-    });
-}
+app.use(passport.initialize());
+app.use(passport.session());
 
-export function startServer(): Express {
-    configureApp();
-    setupRoutes();
-    
-    return app;
-}
+app.use("/", appRoutes);
+
+sequelize
+  .sync()
+  .then(() => {
+    logger.info("db synchorized");
+  })
+  .catch((err) => {
+    logger.error("error : " + err.message);
+  });
+
+export default app;

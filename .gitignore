@@ -2,6 +2,7 @@
 node_modules/
 npm-debug.log
 
+
 # Environment variables
 .env
 
@@ -25,3 +26,5 @@ out/
 
 # Webpack
 webpack-debug.log
+combined.log
+error.log
