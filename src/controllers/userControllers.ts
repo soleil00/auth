@@ -1,26 +1,47 @@
 import { Request, Response } from "express";
 import User from "../Database/models/user";
-import { UserProfile } from "../types";
+import { UserAttributes, UserProfile } from "../types";
+import * as jwtService from "../services/webtokenservice";
+
 
 export const handleSuccess = async (req: Request, res: Response) => {
   //@ts-ignore
   const user: UserProfile = req.user;
 
-  try {
-    const newUser = await User.create({
-      first_name: user.name.familyName,
-      last_name: user.name.givenName,
-      full_name: user.displayName,
-      email: user.emails[0].value,
-      google_id: user.id,
-      profile: user.photos[0].value,
-      password: "soleil-did",
-    });
+   
+   
 
-    res.status(200).json({
-      message: "success",
-      data: newUser,
-    });
+  try {
+    const foundUser: any  = await User.findOne({
+      where:{google_id: user.id}
+    })
+     
+    if(foundUser){
+     const token = await jwtService.generateUserToken(foundUser)
+      return res.status(200).json({
+      token: token,
+       message: 'success',
+       data: foundUser 
+      }) 
+    }else{
+      const newUser: any = await User.create({
+        first_name: user.name.familyName,
+        last_name: user.name.givenName,
+        full_name: user.displayName,
+        email: user.emails[0].value,
+        google_id: user.id,
+        profile: user.photos[0].value,
+        password: "soleil-did",
+      });
+     const token = jwtService.generateUserToken(newUser)
+     return  res.status(201).json({
+        token: token,
+        message: "success",
+        data: newUser,
+      });
+
+    }
+    
   } catch (error: any) {
     res.status(500).json({
       message: error.message,
