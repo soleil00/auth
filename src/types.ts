@@ -25,3 +25,15 @@ export interface UserProfile {
     locale: string;
   };
 }
+export interface UserAttributes {
+  id?: string;
+  first_name: string;
+  last_name: string;
+  full_name: string;
+  email: string;
+  profile?: string | null;
+  google_id: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
