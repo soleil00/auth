@@ -1,16 +1,17 @@
 import nodemailer from 'nodemailer';
+import env from '../environment/env';
 export const sendEmailToUser = async (email: string) => {
     const transporter = nodemailer.createTransport({
         //@ts-ignore
-        host:"",
-        port:"",
+        host:env.smtp_host,
+        port:env.smtp_port,
         auth:{
-          user:"",
-          pass:""
+          user:env.smtp_email,
+          pass:env.smtp_pass
         }
    })
     const mailOptions  = {
-        from: process.env.SMTP_EMAIL,
+        from:env.smtp_email,
         to: email,
         subject:"Updated Email",
         text: "Well Your profile Updated Successfully"
