@@ -10,6 +10,10 @@ const env = {
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
+  smtp_host:process.env.SMTP_HOST,
+  smtp_email:process.env.SMTP_EMAIL,
+  smtp_pass:process.env.SMTP_PASS,
+  smtp_port:process.env.SMTP_PORT
 };
 
 export default env;
