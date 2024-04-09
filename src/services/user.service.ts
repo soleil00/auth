@@ -19,8 +19,9 @@ export const handleUpdate = async (req: any, res: Response) => {
     const foundUser = await User.findOne({
       where: { google_id: id },
     });
-    const result = await cloudinary.uploader.upload(req.file.path);
+    
     if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path);
       //@ts-ignore
       foundUser!.profile = result.secure_url;
     }
