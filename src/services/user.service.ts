@@ -30,6 +30,7 @@ export const handleUpdate = async (req: any, res: Response) => {
     last_name ? (foundUser.last_name = last_name) : foundUser;
     //@ts-ignore
     full_name ? (foundUser.full_name = full_name) : foundUser;
+    
     await foundUser!.save();
     res.status(200).json({
       message: "User information updated successfully",
