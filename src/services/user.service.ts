@@ -19,7 +19,7 @@ export const handleUpdate = async (req: any, res: Response) => {
     const foundUser = await User.findOne({
       where: { google_id: id },
     });
-    
+
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path);
       //@ts-ignore
@@ -34,15 +34,15 @@ export const handleUpdate = async (req: any, res: Response) => {
 
     await foundUser!.save();
     //@ts-ignore
-    await sendEmailToUser(foundUser?.email)
+    await sendEmailToUser(foundUser?.email);
     res.status(200).json({
       message: "User information updated successfully",
       user: foundUser,
     });
-  } catch (error:any) {
+  } catch (error: any) {
     console.error("Error updating user:", error);
     res.status(500).json({
-      message: error.message
+      message: error.message,
     });
   }
 };

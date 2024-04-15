@@ -8,7 +8,7 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false, // Depending on your database setup, you might need this option
+        rejectUnauthorized: false,
       },
     },
   },
@@ -18,7 +18,7 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false, // Depending on your database setup, you might need this option
+        rejectUnauthorized: false,
       },
     },
   },
@@ -28,7 +28,7 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false, // Depending on your database setup, you might need this option
+        rejectUnauthorized: false,
       },
     },
   },
